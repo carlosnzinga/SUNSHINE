@@ -1,0 +1,7 @@
+{
+  "name": "SUNSHINE",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

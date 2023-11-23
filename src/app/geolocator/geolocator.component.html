@@ -1,0 +1,35 @@
+<!-- geolocator.component.html -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Geolocation</ion-card-title>
+  </ion-card-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Breitengrad</ion-label>
+      {{ latitude }}
+    </ion-item>
+    <ion-item>
+      <ion-label>Längengrad</ion-label>
+      {{ longitude }}
+    </ion-item>
+    <ion-item>
+      <ion-label>Stadt</ion-label>
+    <div *ngIf="weatherData">
+        <p>{{ weatherData.name }}</p>
+    </div>
+  </ion-item>
+
+
+  </ion-list>
+
+  <ion-button fill="clear" (click)="getCurrentPosition()">Standort abfragen</ion-button>
+  <ion-button fill="clear" (click)="resetPosition()">Reset</ion-button>
+
+  <!-- Anzeige der Wetterdaten -->
+  <ion-item *ngIf="weatherData">
+    <ion-label>Temperatur</ion-label>
+    {{ weatherData.main.temp }} °C
+  </ion-item>
+  <!-- Füge hier weitere Wetterinformationen hinzu, je nach Bedarf -->
+</ion-card>

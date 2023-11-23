@@ -1,0 +1,28 @@
+<!-- meteo.component.html -->
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Weather Forecast
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" *ngFor="let day of forecastData?.list">
+        <ion-card>
+          <ion-card-header>
+            {{ getDayOfWeek(day.dt) }}
+          </ion-card-header>
+          <ion-card-content>
+            <div *ngFor="let weatherData of day.weather">
+              <p>{{ getHourOfDay(day.dt) }}: {{ weatherData.description }}</p>
+            </div>
+            <p>{{ day.main.temp }}°C</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

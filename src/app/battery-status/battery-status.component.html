@@ -1,0 +1,41 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Battery Status</ion-card-title>
+  </ion-card-header>
+
+      <ion-item>
+
+          <ng-template [ngIf]="batteryIsCharging" [ngIfElse]="batteryNotCharging">
+            <ion-icon slot="start" name="battery-charging-outline"></ion-icon>
+          </ng-template>
+
+          <ng-template #batteryNotCharging>
+
+            <ion-icon slot="start" name="battery-half-outline"
+              *ngIf="batteryLevel && (batteryLevel > 0.15 && batteryLevel < 0.85)"></ion-icon>
+            <ion-icon slot="start" name="battery-full-outline"
+              *ngIf="batteryLevel && batteryLevel > 0.85"></ion-icon>
+            <ion-icon slot="start" name="battery-dead-outline"
+              *ngIf="batteryLevel && batteryLevel < 0.15"></ion-icon>
+
+          </ng-template>
+
+          <ion-label *ngIf="batteryLevel">
+              {{ batteryLevel | percent }}
+              <ion-progress-bar [value]="batteryLevel"></ion-progress-bar>
+          </ion-label>
+
+      </ion-item>
+
+  <ion-button fill="clear" (click)="getBatteryInfo()">Battery testen</ion-button>
+
+</ion-card>
+
+<ion-alert
+  [isOpen]="alertIsOpen"
+  header="Alert"
+  subHeader="Important message"
+  message="Battery is low!"
+  [buttons]="['ok']"
+  (didDismiss)="setAlertOpen(false)"
+></ion-alert>

@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Weather Search
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label position="floating">Stadt eingeben</ion-label>
+    <ion-input type="text" [(ngModel)]="city"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="searchWeather()">Suche</ion-button>
+
+  <ion-list *ngIf="weatherData && weatherData.length > 0">
+    <ion-item *ngFor="let weather of weatherData">
+      <!-- Anzeige der Wetterdaten -->
+      <ion-label>{{ weather.name }}</ion-label>
+      <ion-label>{{ weather.main.temp }}°C</ion-label>
+      <ion-label>{{ weather.dt | date:'EEE' }}</ion-label>
+      <ion-label>{{ weather.dt | date:'mediumTime' }}</ion-label>
+    </ion-item>
+
+    <!-- Favoritenoption -->
+    <ion-item>
+      <ion-icon name="star" slot="start"></ion-icon>
+      <ion-label>Favorit hinzufügen</ion-label>
+      <ion-toggle slot="end" [(ngModel)]="isFavorite" (ionChange)="addToFavorites()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<div *ngIf="notification" class="notification">{{ notification }}</div>
+
+
